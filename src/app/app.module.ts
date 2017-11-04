@@ -16,16 +16,14 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { Escolha } from '../pages/escolha/escolha';
 import { CadastroAgendamentoPage } from '../pages/cadastro-agendamento/cadastro-agendamento';
 import { AgendamentoServiceProvider } from '../providers/agendamento-service/agendamento-service';
+import { IonicStorageModule } from '@ionic/storage';
+import { AgendamentoDao } from '../providers/agendamento-service/agendamento-dao';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyASUFnx0L7lzzW18PZKZiugpBij1QmnQ5s",
-  authDomain: "carros-92a1a.firebaseapp.com",
-  databaseURL: "https://carros-92a1a.firebaseio.com",
-  projectId: "carros-92a1a",
-  storageBucket: "carros-92a1a.appspot.com",
-  messagingSenderId: "1072296562246"
+
 
 };
+
 
 @NgModule({
   declarations: [
@@ -40,6 +38,10 @@ export const firebaseConfig = {
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: 'aluracar',
+         driverOrder: ['indexeddb']
+    }),
     AngularFireModule.initializeApp(firebaseConfig),  
     AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule 
@@ -57,6 +59,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AgendamentoDao,
     AgendamentoServiceProvider
   ]
 })

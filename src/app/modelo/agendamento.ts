@@ -5,4 +5,5 @@ interface Agendamento {
     endereco: string;
     email: string;
     data: string;
+    confirmado: boolean;
 }
